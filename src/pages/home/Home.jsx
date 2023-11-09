@@ -24,7 +24,7 @@ const HomePage = () => {
 
   return (
     <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="md">
         <Card>
           <CardHeader
             title="Todays Special"

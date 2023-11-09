@@ -60,7 +60,7 @@ const Menu = () => {
 
   return (
     <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="md">
         <Header
           title={"Menus"}
           button={"Make or add to menu"}
