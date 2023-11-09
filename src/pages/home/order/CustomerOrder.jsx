@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import Header from "../../../components/Header";
 import useAuth from "../../../hooks/useAuth";
 
@@ -48,68 +48,72 @@ const CustomerOrder = () => {
 
   return (
     <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
-      <Container maxWidth="md">
+      <Container maxWidth="xl">
         <Header
           title={"Orders"}
           button={"Make an order"}
           // onClick={() => setOpen(true)}
         />
 
-        <Card>
-          <CardHeader
-            title="Todays Special"
-            sx={{ display: "flex", justifyContent: "center", mb: "2" }}
-          />
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <CardHeader
+                title="Todays Special"
+                sx={{ display: "flex", justifyContent: "center", mb: "2" }}
+              />
 
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>#</TableCell>
-                <TableCell>Meal</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Action</TableCell>
-              </TableRow>
-            </TableHead>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>#</TableCell>
+                    <TableCell>Meal</TableCell>
+                    <TableCell>Description</TableCell>
+                    <TableCell>Price</TableCell>
+                    <TableCell>Action</TableCell>
+                  </TableRow>
+                </TableHead>
 
-            <TableBody>
-              {menus.map(
-                (menu) =>
-                  menu.date === formattedDate && (
-                    <TableRow hover key={menu.id}>
-                      <TableCell>
-                        <img
-                          src={
-                            menu.menu_meals.image
-                              ? menu.menu_meals.image
-                              : "/hero-img.png"
-                          }
-                          height="50px"
-                          width="50px"
-                        />
-                      </TableCell>
-                      <TableCell>{menu.menu_meals.name}</TableCell>
-                      <TableCell>{menu.menu_meals.description}</TableCell>
-                      <TableCell>{menu.menu_meals.price}</TableCell>
-                      <TableCell>
-                        <Button
-                          onClick={() =>
-                            handleOrder(menu.id, menu.menu_meals.id)
-                          }
-                        >
-                          Order
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  )
-              )}
-            </TableBody>
-          </Table>
-        </Card>
+                <TableBody>
+                  {menus.map(
+                    (menu) =>
+                      menu.date === formattedDate && (
+                        <TableRow hover key={menu.id}>
+                          <TableCell>
+                            <img
+                              src={
+                                menu.menu_meals.image
+                                  ? menu.menu_meals.image
+                                  : "/hero-img.png"
+                              }
+                              height="50px"
+                              width="50px"
+                            />
+                          </TableCell>
+                          <TableCell>{menu.menu_meals.name}</TableCell>
+                          <TableCell>{menu.menu_meals.description}</TableCell>
+                          <TableCell>{menu.menu_meals.price}</TableCell>
+                          <TableCell>
+                            <Button
+                              onClick={() =>
+                                handleOrder(menu.id, menu.menu_meals.id)
+                              }
+                            >
+                              Order
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      )
+                  )}
+                </TableBody>
+              </Table>
+            </Card>
+          </Grid>
 
-        <br />
-
-        <OrdersTable />
+          <Grid item xs={12} md={6}>
+            <OrdersTable />
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );

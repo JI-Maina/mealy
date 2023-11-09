@@ -13,8 +13,11 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
-const pages = [
+const customerPages = [{ title: "Orders", path: "/home/orders" }];
+
+const adminPages = [
   { title: "Meals", path: "/home/meals" },
   { title: "Menus", path: "/home/menus" },
   { title: "Orders", path: "/home/orders" },
@@ -27,7 +30,9 @@ const settings = [
 ];
 
 function NavBar() {
+  const { auth } = useAuth();
   const navigate = useNavigate();
+  const pages = auth.userRole === "admin" ? adminPages : customerPages;
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
