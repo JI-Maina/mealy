@@ -22,11 +22,9 @@ const RegisterPage = () => {
 
     const createUser = async () => {
       try {
-        await axios.post(
-          "http://127.0.0.1:8000/auth/register/",
-          JSON.stringify(user),
-          { headers: { "Content-Type": "application/json" } }
-        );
+        await axios.post("/auth/register/", JSON.stringify(user), {
+          headers: { "Content-Type": "application/json" },
+        });
 
         navigate("/login");
       } catch (error) {
