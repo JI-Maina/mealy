@@ -1,5 +1,11 @@
+import Order from "./order/Order";
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <Order />
+    </div>
+  );
 };
 
 export default HomePage;
