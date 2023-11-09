@@ -1,7 +1,6 @@
 import { Box, Container } from "@mui/material";
 import Header from "../../../components/Header";
 import useAuth from "../../../hooks/useAuth";
-import { jwtDecode } from "jwt-decode";
 
 import {
   Button,
@@ -16,6 +15,7 @@ import {
 import useFetchData from "../../../hooks/useFetchData";
 import axios from "../../../api/axios";
 import { toast } from "react-toastify";
+import OrdersTable from "./OrdersTable";
 
 const CustomerOrder = () => {
   const { auth } = useAuth();
@@ -48,7 +48,7 @@ const CustomerOrder = () => {
 
   return (
     <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="md">
         <Header
           title={"Orders"}
           button={"Make an order"}
@@ -106,6 +106,10 @@ const CustomerOrder = () => {
             </TableBody>
           </Table>
         </Card>
+
+        <br />
+
+        <OrdersTable />
       </Container>
     </Box>
   );

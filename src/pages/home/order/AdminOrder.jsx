@@ -1,10 +1,6 @@
 import { Box, Container } from "@mui/material";
-import Header from "../../../components/Header";
-import useAuth from "../../../hooks/useAuth";
-import { jwtDecode } from "jwt-decode";
 
 import {
-  Button,
   Card,
   CardHeader,
   Table,
