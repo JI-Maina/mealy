@@ -16,9 +16,11 @@ import useFetchData from "../../../hooks/useFetchData";
 import axios from "../../../api/axios";
 import { toast } from "react-toastify";
 import OrdersTable from "./OrdersTable";
+import { useQueryClient } from "react-query";
 
 const CustomerOrder = () => {
   const { auth } = useAuth();
+  const queryClient = useQueryClient();
 
   const { isError, isLoading, data } = useFetchData("menus", "/api/menus/");
   const menus = data ? data.data : [];
@@ -37,6 +39,7 @@ const CustomerOrder = () => {
         headers: { Authorization: `JWT ${auth.accessToken}` },
       });
 
+      queryClient.invalidateQueries("orders");
       toast.success("order created successful");
     } catch (error) {
       console.log(error);
@@ -51,7 +54,7 @@ const CustomerOrder = () => {
       <Container maxWidth="xl">
         <Header
           title={"Orders"}
-          button={"Make an order"}
+          // button={"Make an order"}
           // onClick={() => setOpen(true)}
         />
 
