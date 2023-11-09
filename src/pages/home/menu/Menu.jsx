@@ -24,6 +24,7 @@ import useFetchData from "../../../hooks/useFetchData";
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import MenuTable from "./MenuTable";
 
 const Menu = () => {
   const { auth } = useAuth();
@@ -136,6 +137,13 @@ const Menu = () => {
             </Box>
           </DialogContent>
         </Dialog>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <MenuTable />
       </Container>
     </Box>
   );

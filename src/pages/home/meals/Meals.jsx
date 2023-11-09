@@ -19,9 +19,13 @@ import DeleteModal from "./DeleteModal";
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "react-query";
 
 const Meals = () => {
   const { auth } = useAuth();
+  const queryClient = useQueryClient();
+
   const [open, setOpen] = useState(false);
   const [delet, setDelet] = useState(false);
   const [selected, setSelected] = useState("");
@@ -42,9 +46,11 @@ const Meals = () => {
 
   const onDelete = async () => {
     try {
-      axios.delete(`/api/meals/${selected}/`, {
+      await axios.delete(`/api/meals/${selected}/`, {
         headers: { Authorization: `JWT ${auth.accessToken}` },
       });
+
+      queryClient.invalidateQueries("meals");
       setDelet(false);
     } catch (error) {
       toast.error("failed to delete, try again");
