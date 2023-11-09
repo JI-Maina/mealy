@@ -1,17 +1,15 @@
-import { Box, Container } from "@mui/material";
-import Header from "../../../components/Header";
+import useAuth from "../../../hooks/useAuth";
+import AdminOrder from "./AdminOrder";
+import CustomerOrder from "./CustomerOrder";
 
 const Order = () => {
+  const { auth } = useAuth();
+
   return (
-    <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
-      <Container maxWidth="xl">
-        <Header
-          title={"Orders"}
-          button={"Make an order"}
-          // onClick={() => setOpen(true)}
-        />
-      </Container>
-    </Box>
+    <>
+      {auth.userRole === "is_customer" && <CustomerOrder />}
+      {auth.userRole === "admin" && <AdminOrder />}
+    </>
   );
 };
 
