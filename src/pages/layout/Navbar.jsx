@@ -20,7 +20,11 @@ const pages = [
   { title: "Orders", path: "/home/orders" },
 ];
 
-const settings = ["Profile", "Account", "Settings", "Logout"];
+const settings = [
+  { title: "Profile", path: "/home/" },
+  { title: "Account", path: "/home/menus" },
+  { title: "Logout", path: "/" },
+];
 
 function NavBar() {
   const navigate = useNavigate();
@@ -107,7 +111,7 @@ function NavBar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -156,8 +160,11 @@ function NavBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem
+                  key={setting.title}
+                  onClick={() => navigate(setting.path)}
+                >
+                  <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>

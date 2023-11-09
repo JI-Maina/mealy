@@ -20,26 +20,19 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 
 import useFetchData from "../../../hooks/useFetchData";
-import { useMutation } from "react-query";
 import axios from "../../../api/axios";
 import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
   const { auth } = useAuth();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
 
   const { isError, isLoading, data } = useFetchData("meals", "/api/meals/");
 
   const meals = data ? data.data : [];
-
-  // const mutation = useMutation(
-  //   () =>
-  //     axios.post("/api/menus/", {
-  //       headers: { Authorization: `JWT ${auth.accessToken}` },
-  //     }),
-  //   { onError: (err) =>  }
-  // );
 
   const today = new Date();
   const formattedDate = today.toISOString().split("T")[0];
@@ -61,21 +54,20 @@ const Menu = () => {
     }
   };
 
-  console.log(selected);
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
 
   return (
     <div>
       <Header
-        title={"Orders"}
-        button={"Make an order"}
+        title={"Menus"}
+        button={"Make an menu"}
         onClick={() => setOpen(true)}
       />
 
       <Dialog open={open}>
         <DialogTitle>
-          Create New Category
+          Create Todays Menu
           <IconButton onClick={() => setOpen(!open)} sx={{ float: "right" }}>
             <CloseIcon color="primary" />
           </IconButton>
@@ -132,7 +124,10 @@ const Menu = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={() => setOpen(!open)}
+              onClick={() => {
+                setOpen(!open);
+                navigate("/home");
+              }}
             >
               Complete Menu
             </Button>
