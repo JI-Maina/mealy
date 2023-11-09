@@ -1,10 +1,10 @@
-import axios from "axios";
 import Container from "@mui/material/Container";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar, Box, Typography, Grid } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import RegisterForm from "./RegisterForm";
+import axios from "../../../api/axios";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
