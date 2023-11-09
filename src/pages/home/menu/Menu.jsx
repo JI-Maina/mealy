@@ -4,6 +4,7 @@ import Header from "../../../components/Header";
 import {
   Button,
   Card,
+  Container,
   Table,
   TableBody,
   TableCell,
@@ -58,83 +59,85 @@ const Menu = () => {
   if (isError) return <div>Error...</div>;
 
   return (
-    <div>
-      <Header
-        title={"Menus"}
-        button={"Make an menu"}
-        onClick={() => setOpen(true)}
-      />
+    <Box component="main" sx={{ flexGrow: 1, py: 4 }}>
+      <Container maxWidth="xl">
+        <Header
+          title={"Menus"}
+          button={"Make or add to menu"}
+          onClick={() => setOpen(true)}
+        />
 
-      <Dialog open={open}>
-        <DialogTitle>
-          Create Todays Menu
-          <IconButton onClick={() => setOpen(!open)} sx={{ float: "right" }}>
-            <CloseIcon color="primary" />
-          </IconButton>
-        </DialogTitle>
+        <Dialog open={open}>
+          <DialogTitle>
+            Create Todays Menu
+            <IconButton onClick={() => setOpen(!open)} sx={{ float: "right" }}>
+              <CloseIcon color="primary" />
+            </IconButton>
+          </DialogTitle>
 
-        <DialogContent>
-          <Box
-            noValidate
-            // component="form"
-            // onSubmit={handleSubmit(onSubmit)}
-            sx={{ mt: 3 }}
-          >
-            <Card>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>#</TableCell>
-                    <TableCell>Meal</TableCell>
-                    <TableCell>Price</TableCell>
-                    <TableCell>Action</TableCell>
-                  </TableRow>
-                </TableHead>
-
-                <TableBody>
-                  {meals.map((meal) => (
-                    <TableRow hover key={meal.id}>
-                      <TableCell>
-                        <img
-                          src={meal.image ? meal.image : "/hero-img.png"}
-                          height="50px"
-                          width="50px"
-                        />
-                      </TableCell>
-                      <TableCell>{meal.name}</TableCell>
-                      <TableCell>{meal.price}</TableCell>
-                      <TableCell>
-                        <Button
-                          onClick={() => {
-                            setSelected(meal.id);
-                            addToMenu();
-                          }}
-                        >
-                          Add
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Card>
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={() => {
-                setOpen(!open);
-                navigate("/home");
-              }}
+          <DialogContent>
+            <Box
+              noValidate
+              // component="form"
+              // onSubmit={handleSubmit(onSubmit)}
+              sx={{ mt: 3 }}
             >
-              Complete Menu
-            </Button>
-          </Box>
-        </DialogContent>
-      </Dialog>
-    </div>
+              <Card>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>#</TableCell>
+                      <TableCell>Meal</TableCell>
+                      <TableCell>Price</TableCell>
+                      <TableCell>Action</TableCell>
+                    </TableRow>
+                  </TableHead>
+
+                  <TableBody>
+                    {meals.map((meal) => (
+                      <TableRow hover key={meal.id}>
+                        <TableCell>
+                          <img
+                            src={meal.image ? meal.image : "/hero-img.png"}
+                            height="50px"
+                            width="50px"
+                          />
+                        </TableCell>
+                        <TableCell>{meal.name}</TableCell>
+                        <TableCell>{meal.price}</TableCell>
+                        <TableCell>
+                          <Button
+                            onClick={() => {
+                              setSelected(meal.id);
+                              addToMenu();
+                            }}
+                          >
+                            Add
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Card>
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={() => {
+                  setOpen(!open);
+                  navigate("/home");
+                }}
+              >
+                Complete Menu
+              </Button>
+            </Box>
+          </DialogContent>
+        </Dialog>
+      </Container>
+    </Box>
   );
 };
 
