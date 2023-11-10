@@ -1,40 +1,31 @@
-import Container from "@mui/material/Container";
-
-import { Button, Typography } from "@mui/material";
-
-import { Box } from "@mui/material";
+import { Button, Container, Stack, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const RegisterAs = () => {
-  // const [is_admin, setIs_admin] = useState(false);
-  // const [is_customer, setIs_Customer] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <Box component="main" height="100vh">
-      <Container maxWidth="xl">
-        <Box m={4} display="flex" justifyContent="center">
-          <Typography variant="h4">Get started today as ...</Typography>
-        </Box>
+    <Container maxWidth="sm">
+      <Stack spacing={5} mt={20}>
+        <Typography variant="h4">
+          Register today as either a customer or a caterer
+        </Typography>
 
-        <Box>
-          <Button
-            hover
-            onClick={() => {
-              // setIs_Customer(true);
-            }}
-          >
-            Player
-          </Button>
-          <Button
-            hover
-            onClick={() => {
-              // setIs_Customer(true);
-            }}
-          >
-            Customer
-          </Button>
-        </Box>
-      </Container>
-    </Box>
+        <Button
+          variant="contained"
+          onClick={() => navigate("/register/caterer")}
+        >
+          Caterer
+        </Button>
+
+        <Button
+          variant="contained"
+          onClick={() => navigate("/register/customer")}
+        >
+          Customer
+        </Button>
+      </Stack>
+    </Container>
   );
 };
 

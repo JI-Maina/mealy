@@ -8,7 +8,7 @@ import Layout from "../pages/layout/Layout";
 import Menu from "../pages/home/menu/Menu";
 import Meals from "../pages/home/meals/Meals";
 import Order from "../pages/home/order/Order";
-// import RegisterAs from "../pages/auth/register/RegisterAs";
+import RegisterAs from "../pages/auth/register/RegisterAs";
 
 const Router = () => {
   return (
@@ -16,8 +16,8 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/register" element={<RegisterAs />} /> */}
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/register" element={<RegisterAs />} />
+        <Route path="/register/:user" element={<RegisterPage />} />
 
         <Route element={<Layout />}>
           <Route path="/home" element={<HomePage />} />

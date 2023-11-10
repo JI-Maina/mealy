@@ -1,5 +1,5 @@
 import Container from "@mui/material/Container";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Avatar, Box, Typography, Grid } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
@@ -8,21 +8,22 @@ import axios from "../../../api/axios";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const { user } = useParams();
 
   const onSubmit = (data) => {
-    const user = {
+    const newUser = {
       username: data.username,
       email: data.email,
       first_name: data.firstName,
       last_name: data.lastName,
       password: data.password,
-      is_admin: true,
-      is_customer: false,
+      is_admin: user === "caterer",
+      is_customer: user === "customer",
     };
 
     const createUser = async () => {
       try {
-        await axios.post("/auth/register/", JSON.stringify(user), {
+        await axios.post("/auth/register/", JSON.stringify(newUser), {
           headers: { "Content-Type": "application/json" },
         });
 

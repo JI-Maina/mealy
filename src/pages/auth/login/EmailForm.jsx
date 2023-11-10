@@ -37,7 +37,7 @@ const EmailForm = () => {
       username: data.userName,
       password: data.password,
     };
-    console.log(user);
+
     try {
       const res = await axios.post("/auth/login/", user, {
         headers: { "Content-Type": "application/json" },

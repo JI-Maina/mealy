@@ -90,7 +90,6 @@ const RegisterForm = ({ onSubmit }) => {
             fullWidth
             label="password"
             type="password"
-            placeholder="customer"
             {...register("password")}
             error={!!errors.password}
             helperText={errors.password?.message}

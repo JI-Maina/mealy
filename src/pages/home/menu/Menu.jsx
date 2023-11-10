@@ -44,7 +44,7 @@ const Menu = () => {
       menu_meals: parseInt(selected),
       date: formattedDate,
     };
-    console.log(menu);
+
     try {
       const res = await axios.post("/api/menus/", menu, {
         headers: { Authorization: `JWT ${auth.accessToken}` },
